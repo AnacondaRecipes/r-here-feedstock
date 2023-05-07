@@ -16,6 +16,7 @@ build:
   merge_build_host: true  # [win]
   number: 1
   noarch: generic
+  skip: True # [not linux64]
   rpaths:
     - lib/R/lib/
     - lib/
