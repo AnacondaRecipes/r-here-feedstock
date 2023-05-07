@@ -23,10 +23,10 @@ build:
 requirements:
   build:
   host:
-    - r-base
+    - r-base {{ r_version }}
     - r-rprojroot >=2.0.2
   run:
-    - r-base
+    - r-base {{ r_version }}
     - r-rprojroot >=2.0.2
 
 test:
@@ -46,3 +46,20 @@ extra:
   recipe-maintainers:
     - conda-forge/r
     - brisk022
+
+  skip-lints:
+    # These are needed because of bug: https://github.com/anaconda-distribution/anaconda-linter/issues/197
+    - http_url
+    - invalid_url
+
+    - host_section_needs_exact_pinnings
+    - missing_dev_url
+    - missing_description
+    - missing_documentation
+
+  anaconda-services:
+    ref:  https://anaconda.zendesk.com/agent/tickets/35116
+    reason: "needed for r-devtools"
+    recipe-maintainers:
+      - bkreider
+
